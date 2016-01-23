@@ -16,6 +16,7 @@ public class Player {
     private long id;
 
     private String name;
+    private boolean checked;
 
     public long getId() {
         return id;
@@ -31,5 +32,13 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }
