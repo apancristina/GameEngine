@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+</head>
+<body>
+
+<script>
+    $(function() {
+        $( "#submitGame" ).bind( "click", function(event, ui) {
+            var newVar = {
+                "name": $("#team1").val(),
+                "teams": [ {
+                    "name": "The ballas",
+                    "players": [{
+                        "name": "Sechel"
+                    }, {
+                        "name": "Apan"
+                    }]
+                }, {
+                    "name": "Mortar gunners",
+                    "players": [{
+                        "name": "Leustean"
+                    }, {
+                        "name": "Agnes"
+                    }]
+                }]
+
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/games/createGame",
+                data: JSON.stringify(newVar),
+                cache: false,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                processData:false,
+                dataType: "json",
+                success: onSuccess
+            });
+        });
+
+        function onSuccess(data)
+        {
+            alert("alalalala")
+            /*$("#resultLog").html("Result: " + data);*/
+        }
+    });
+</script>
+
+<div data-role="page">
+
+    <div data-role="header">
+        <h1>Sapca</h1>
+    </div><!-- /header -->
+
+    <div data-role="content">
+        <form>
+            <ul data-role="listview" data-theme="b">
+                <li data-role="list-divider">
+                    <input type="text" name="name" id="team1" data-mini="true" placeholder="Team name"/>
+                        <li>
+                            <input type="text" name="name" id="player1" data-mini="true" placeholder="Player name"/>
+                        </li>
+                        <li>
+                            <input type="text" name="name" id="player2" data-mini="true" placeholder="Player name"/>
+                        </li>
+                </li>
+                <li data-role="list-divider">
+                    <input type="text" name="name" id="team2" data-mini="true" placeholder="Team name"/>
+                        <li>
+                           <input type="text" name="name" id="player3" data-mini="true" placeholder="Player name"/>
+                        </li>
+                        <li>
+                            <input type="text" name="name" id="player4" data-mini="true" placeholder="Player name"/>
+                        </li>
+                </li>
+                <li>
+                    <button id="submitGame" type="button" data-theme="b" name="submit"
+                            value="submit-value" class="ui-btn-hidden" aria-disabled="false">
+                        Submit
+                    </button>
+                </li>
+            </ul>
+        </form>
+    </div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>
