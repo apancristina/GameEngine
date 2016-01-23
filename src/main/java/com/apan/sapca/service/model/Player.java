@@ -1,9 +1,8 @@
 package com.apan.sapca.service.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 /**
  * Created by apanc on 1/22/2016.
@@ -14,6 +13,11 @@ public class Player {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     private String name;
 
@@ -31,5 +35,13 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
