@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Game Form</h1>
+    <form>
+        <div class="form-group">
+            <label for="team">Team</label>
+            <input type="text" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="player">Player</label>
+            <select class="form-control" required>
+                <option *ngFor="#p of players" [value]="p">{{p}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
